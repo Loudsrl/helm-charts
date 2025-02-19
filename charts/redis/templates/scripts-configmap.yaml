@@ -456,7 +456,7 @@ data:
     {{- end }}
     {{- end }}
     mv /opt/bitnami/redis-sentinel/etc/prepare-sentinel.conf /opt/bitnami/redis-sentinel/etc/sentinel.conf
-    exec redis-stack-server /opt/bitnami/redis-sentinel/etc/sentinel.conf {{- if .Values.tls.enabled }} "${ARGS[@]}" {{- end }} --sentinel
+    exec redis-server /opt/bitnami/redis-sentinel/etc/sentinel.conf {{- if .Values.tls.enabled }} "${ARGS[@]}" {{- end }} --sentinel
   prestop-sentinel.sh: |
     #!/bin/bash
 
