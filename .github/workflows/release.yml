@@ -36,6 +36,9 @@ jobs:
         run: |
           set -euo pipefail
 
+          # Copy .github/workflows
+          rsync -av .github/workflows/ gh-pages/.github/workflows/ 2>/dev/null || true
+
           # Copy root README
           cp -f README.md gh-pages/README.md
 
