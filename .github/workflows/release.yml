@@ -25,3 +25,33 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Sync files to gh-pages
+        run: |
+          set -euo pipefail
+
+          # Copy root README
+          cp -f README.md gh-pages/README.md
+
+          # Copy charts directory (creates it if missing)
+          rsync -av charts/ gh-pages/charts/ 2>/dev/null || true
+
+          # Configure git in gh-pages worktree
+          git -C gh-pages config user.name "$GITHUB_ACTOR"
+          git -C gh-pages config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+          # Commit & push only if there are changes
+          cd gh-pages
+          if [ -n "$(git status --porcelain)" ]; then
+            git add README.md charts/
+            git commit -m "docs(pages): Sync files from ${GITHUB_SHA::7}"
+            git push origin gh-pages
+          else
+            echo "No changes to commit on gh-pages"
+          fi
