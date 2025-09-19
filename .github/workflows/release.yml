@@ -36,14 +36,12 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Copy .github/workflows
-          rsync -av .github/workflows/ gh-pages/.github/workflows/ 2>/dev/null || true
-
-          # Copy root README
+          # Copy files
           cp -f README.md gh-pages/README.md
-
-          # Copy charts directory (creates it if missing)
+          rsync -av .github/workflows/ gh-pages/.github/workflows/ 2>/dev/null || true
           rsync -av charts/ gh-pages/charts/ 2>/dev/null || true
+          rsync -av scripts/ gh-pages/scripts/ 2>/dev/null || true
+
 
           # Configure git in gh-pages worktree
           git -C gh-pages config user.name "$GITHUB_ACTOR"
