@@ -113,7 +113,7 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnamilegacy/redis
+  repository: sxfloudsrl/redis
   tag: 8.2.1-debian-12-r0
   digest: ""
   ## Specify a imagePullPolicy
@@ -1185,7 +1185,7 @@ sentinel:
   ##
   image:
     registry: docker.io
-    repository: bitnamilegacy/redis-sentinel
+    repository: sxfloudsrl/redis-sentinel
     tag: 8.2.1-debian-12-r0
     digest: ""
     ## Specify a imagePullPolicy
@@ -1789,7 +1789,7 @@ metrics:
   ##
   image:
     registry: docker.io
-    repository: bitnamilegacy/redis-exporter
+    repository: sxfloudsrl/redis-exporter
     tag: 1.76.0-debian-12-r0
     digest: ""
     pullPolicy: IfNotPresent
@@ -2167,7 +2167,7 @@ volumePermissions:
   ##
   image:
     registry: docker.io
-    repository: bitnamilegacy/os-shell
+    repository: sxfloudsrl/os-shell
     tag: 12-debian-12-r51
     digest: ""
     pullPolicy: IfNotPresent
@@ -2231,7 +2231,7 @@ kubectl:
   ##
   image:
     registry: docker.io
-    repository: bitnamilegacy/kubectl
+    repository: sxfloudsrl/kubectl
     tag: 1.33.4-debian-12-r0
     digest: ""
     ## Specify a imagePullPolicy
@@ -2300,7 +2300,7 @@ sysctl:
   ##
   image:
     registry: docker.io
-    repository: bitnamilegacy/os-shell
+    repository: sxfloudsrl/os-shell
     tag: 12-debian-12-r51
     digest: ""
     pullPolicy: IfNotPresent
