@@ -36,23 +36,21 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Copy files
+          # Copy files into gh-pages worktree
           cp -f README.md gh-pages/README.md
           rsync -av .github/workflows/ gh-pages/.github/workflows/ 2>/dev/null || true
           rsync -av charts/ gh-pages/charts/ 2>/dev/null || true
           rsync -av scripts/ gh-pages/scripts/ 2>/dev/null || true
-
 
           # Configure git in gh-pages worktree
           git -C gh-pages config user.name "$GITHUB_ACTOR"
           git -C gh-pages config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
           # Commit & push only if there are changes
-          cd gh-pages
-          if [ -n "$(git status --porcelain)" ]; then
-            git add README.md charts/
-            git commit -m "docs(pages): Sync files from ${GITHUB_SHA::7}"
-            git push origin gh-pages
+          if [ -n "$(git -C gh-pages status --porcelain)" ]; then
+            git -C gh-pages add -A
+            git -C gh-pages commit -m "docs(pages): Sync files from ${GITHUB_SHA::7}"
+            git -C gh-pages push origin gh-pages
           else
             echo "No changes to commit on gh-pages"
           fi
