@@ -23,8 +23,6 @@ Install a chart:
 
 ```bash
 helm install my-<release-name> loudsrl/<chart-name>
-
-
 ```
 
 Uninstall a release:
