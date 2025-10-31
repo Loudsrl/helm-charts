@@ -39,4 +39,4 @@ maintainers:
 name: redis
 sources:
   - https://github.com/loudsrl/helm-charts/tree/main/charts/redis
-version: 23.0.2-LOUD # !: LOUDsrl version
+version: 23.0.4-LOUD # !: LOUDsrl version
